@@ -15,6 +15,7 @@
     "NFT"
   ],
   "dependencies": {
+    "@darkblock.io/shared-components": "^0.0.5",
     "@xstate/react": "^2.0.0",
     "base64-arraybuffer": "^1.0.2",
     "openseadragon": "^3.0.0",
@@ -47,6 +48,11 @@
     "@babel/preset-react": "^7.16.7",
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-node-resolve": "^13.1.3",
+    "@solana/wallet-adapter-base": "^0.9.5",
+    "@solana/wallet-adapter-react": "^0.15.4",
+    "@solana/wallet-adapter-react-ui": "^0.9.6",
+    "@solana/wallet-adapter-wallets": "^0.16.1",
+    "@solana/web3.js": "^1.42.0",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
@@ -59,11 +65,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
-    "@solana/wallet-adapter-base": "^0.9.3",
-    "@solana/wallet-adapter-react": "^0.15.3",
-    "@solana/wallet-adapter-react-ui": "^0.9.5",
-    "@solana/wallet-adapter-wallets": "^0.15.4",
-    "@solana/web3.js": "^1.36.0",
     "stream": "^0.0.2"
   },
   "scripts": {
