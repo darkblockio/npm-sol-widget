@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Header, Panel, Player, utils, widgetMachine } from '@darkblock.io/shared-components'
+import { Stack, utils, widgetMachine } from '@darkblock.io/shared-components'
 import { useMachine } from '@xstate/react'
 import { encode } from 'base64-arraybuffer'
 import './db.css'
@@ -115,6 +115,7 @@ const SolanaDarkblockWidget = ({
   const authenticate = async () => {
     let epoch = Date.now()
     let address = null
+    let ownerDataWithOwner
 
     if (walletAdapter.publicKey && walletAdapter.signMessage) {
       address = walletAdapter.publicKey.toBase58()
@@ -127,12 +128,18 @@ const SolanaDarkblockWidget = ({
         console.log(e)
       } finally {
         if (signature) {
-          if (state.context.owner.owner_address === address) {
+          ownerDataWithOwner = await utils.getOwner(contractAddress, tokenId, platform, address)
+
+          if (
+            !ownerDataWithOwner ||
+            !ownerDataWithOwner.owner_address ||
+            ownerDataWithOwner.owner_address.toLowerCase() !== address.toLowerCase()
+          ) {
+            send({ type: 'FAIL' })
+          } else {
             signature = encodeURIComponent(encode(signature)) + '_Solana'
             epochSignature = epoch + '_' + signature
             send({ type: 'SUCCESS' })
-          } else {
-            send({ type: 'FAIL' })
           }
         }
 
