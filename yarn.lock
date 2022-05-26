@@ -1256,10 +1256,10 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
-"@darkblock.io/shared-components@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.0.11.tgz#3bd8db2e9bf89e07a1149060589c54c3a294c929"
-  integrity sha512-Mkp9aWZuAmeopBunO2w1Hhm2PlQx/iOR4n+JU6o7Du/ReUh4s9P/jLHyvAENOpB8YjK0j50r7TrgfNK2v4JeBQ==
+"@darkblock.io/shared-components@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.0.12.tgz#83460c8728d115264faf1aa7ed364537398deae2"
+  integrity sha512-/ldI9QmOeHTK1Qx37XIIQ/VOTleGdssPYAgECIM91XlcLTuLGHOImSFv2JIe9kBph6PfntcqRqMni3Gg3r8zwg==
   dependencies:
     openseadragon "^3.0.0"
     photoswipe "^4.1.3"
