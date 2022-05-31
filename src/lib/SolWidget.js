@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Stack, utils, widgetMachine } from '@darkblock.io/shared-components'
 import { useMachine } from '@xstate/react'
 import { encode } from 'base64-arraybuffer'
-import './db.css'
 
 const platform = 'Solana'
 const contractAddress = ''
