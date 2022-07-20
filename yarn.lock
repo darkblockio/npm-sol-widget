@@ -1256,10 +1256,10 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
-"@darkblock.io/shared-components@^0.0.31":
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.0.31.tgz#f908f185e3abf03e2b3ad44e7779f995e08ec48d"
-  integrity sha512-Z/Ok/O2OzRZ+/PAXF2KUBySnNtmuM1TDtgWgyiJsIx5fBpcpx81lkmInedWYr47Oq5UBOkx2fjnkhyYibU6jbg==
+"@darkblock.io/shared-components@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.1.4.tgz#37b325bbae18c164194f28ace82380eada4c5866"
+  integrity sha512-FKYfz62KfaLKQwZEKY7YBT0QRWZ2BGOlEcWLLs5r+w4Dg8EW/QP/TyhmNxQuVaHXu9aMwRDTrEJoBEN656OLiw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^6.1.1"
     "@fortawesome/free-solid-svg-icons" "^6.1.1"
@@ -1436,9 +1436,9 @@
     "@fortawesome/fontawesome-common-types" "6.1.1"
 
 "@fortawesome/react-fontawesome@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.18.tgz#dae37f718a24e14d7a99a5496c873d69af3fbd73"
-  integrity sha512-RwLIB4TZw0M9gvy5u+TusAA0afbwM4JQIimNH/j3ygd6aIvYPQLqXMhC9ErY26J23rDPyDZldIfPq/HpTTJ/tQ==
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@fortawesome/react-fontawesome/-/react-fontawesome-0.1.19.tgz#2b36917578596f31934e71f92b7cf9c425fd06e4"
+  integrity sha512-Hyb+lB8T18cvLNX0S3llz7PcSOAJMLwiVKBuuzwM/nI5uoBw+gQjnf9il0fR1C3DKOI5Kc79pkJ4/xB0Uw9aFQ==
   dependencies:
     prop-types "^15.8.1"
 
