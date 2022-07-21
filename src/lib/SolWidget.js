@@ -47,6 +47,10 @@ const SolanaDarkblockWidget = ({
   useEffect(() => {
     callback(state.value)
 
+    if (!walletAdapter) {
+      send({ type: 'NO_WALLET' })
+    }
+
     if (walletAdapter && walletAdapter.connected === false) {
       printWalletAdapter()
       send({ type: 'DISCONNECT_WALLET' })
@@ -56,7 +60,7 @@ const SolanaDarkblockWidget = ({
       send({ type: 'FETCH_ARWEAVE' })
     }
 
-    if (state.value === 'started' && walletAdapter.connected) {
+    if (state.value === 'started' && walletAdapter && walletAdapter.connected) {
       send({ type: 'CONNECT_WALLET' })
     }
 
@@ -109,7 +113,7 @@ const SolanaDarkblockWidget = ({
         send({ type: 'SUCCESS' })
       }, 1000)
     }
-  }, [state.value, walletAdapter.connected])
+  }, [state.value, walletAdapter])
 
   const authenticate = async () => {
     let epoch = Date.now()
