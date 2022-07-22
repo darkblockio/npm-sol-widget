@@ -49,55 +49,40 @@ const SolanaDarkblockWidget = ({
 
     if (!walletAdapter) {
       send({ type: 'NO_WALLET' })
-    }
+    } else {
+      if (walletAdapter && walletAdapter.connected === false) {
+        printWalletAdapter()
+        send({ type: 'DISCONNECT_WALLET' })
+      }
 
-    if (walletAdapter && walletAdapter.connected === false) {
-      printWalletAdapter()
-      send({ type: 'DISCONNECT_WALLET' })
-    }
+      if (state.value === 'idle') {
+        send({ type: 'FETCH_ARWEAVE' })
+      }
 
-    if (state.value === 'idle') {
-      send({ type: 'FETCH_ARWEAVE' })
-    }
+      if (state.value === 'started' && walletAdapter && walletAdapter.connected) {
+        send({ type: 'CONNECT_WALLET' })
+      }
 
-    if (state.value === 'started' && walletAdapter && walletAdapter.connected) {
-      send({ type: 'CONNECT_WALLET' })
-    }
+      if (state.value === 'start_failure') {
+        // send({ type: "RETRY" })
+      }
 
-    if (state.value === 'start_failure') {
-      // send({ type: "RETRY" })
-    }
+      if (state.value === 'wallet_connected') {
+        printWalletAdapter()
+      }
 
-    if (state.value === 'wallet_connected') {
-      printWalletAdapter()
-    }
+      if (state.value === 'signing') {
+        authenticate()
+      }
 
-    if (state.value === 'signing') {
-      authenticate()
-    }
+      if (state.value === 'authenticated') {
+        send({ type: 'DECRYPT' })
+      }
 
-    if (state.value === 'authenticated') {
-      send({ type: 'DECRYPT' })
-    }
-
-    if (state.value === 'decrypting') {
-      setMediaURL(
-        utils.getProxyAsset(
-          state.context.artId,
-          epochSignature,
-          state.context.tokenId,
-          state.context.contractAddress,
-          null,
-          platform
-        )
-      )
-
-      let arrTemp = []
-
-      state.context.display.stack.map((db) => {
-        arrTemp.push(
+      if (state.value === 'decrypting') {
+        setMediaURL(
           utils.getProxyAsset(
-            db.artId,
+            state.context.artId,
             epochSignature,
             state.context.tokenId,
             state.context.contractAddress,
@@ -105,13 +90,28 @@ const SolanaDarkblockWidget = ({
             platform
           )
         )
-      })
 
-      setStackMediaURLs(arrTemp)
+        let arrTemp = []
 
-      setTimeout(() => {
-        send({ type: 'SUCCESS' })
-      }, 1000)
+        state.context.display.stack.map((db) => {
+          arrTemp.push(
+            utils.getProxyAsset(
+              db.artId,
+              epochSignature,
+              state.context.tokenId,
+              state.context.contractAddress,
+              null,
+              platform
+            )
+          )
+        })
+
+        setStackMediaURLs(arrTemp)
+
+        setTimeout(() => {
+          send({ type: 'SUCCESS' })
+        }, 1000)
+      }
     }
   }, [state.value, walletAdapter])
 
