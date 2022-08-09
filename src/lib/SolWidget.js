@@ -25,6 +25,7 @@ const SolanaDarkblockWidget = ({
   const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform))
   const [mediaURL, setMediaURL] = useState('')
   const [stackMediaURLs, setStackMediaURLs] = useState('')
+  const [address, setAddress] = useState(null)
 
   const callback = (state) => {
     if (config.debug) console.log('Callback function called from widget. State: ', state)
@@ -60,6 +61,9 @@ const SolanaDarkblockWidget = ({
       }
 
       if (state.value === 'started' && walletAdapter && walletAdapter.connected) {
+        if (walletAdapter.publicKey && walletAdapter.signMessage) {
+          setAddress(walletAdapter.publicKey.toBase58())
+        }
         send({ type: 'CONNECT_WALLET' })
       }
 
@@ -87,7 +91,8 @@ const SolanaDarkblockWidget = ({
             state.context.tokenId,
             state.context.contractAddress,
             null,
-            platform
+            platform,
+            address
           )
         )
 
@@ -101,7 +106,8 @@ const SolanaDarkblockWidget = ({
               state.context.tokenId,
               state.context.contractAddress,
               null,
-              platform
+              platform,
+              address
             )
           )
         })
