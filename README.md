@@ -51,9 +51,10 @@ const cb = (param) => {
 }
 ```
 
-### Example
+### Example Viewer
 
-This component needs to be used within the scope of the Solana Wallet Adapter component. `useWallet` should also be called under the Wallet Adapter scope:
+This component needs to be used within the scope of the Solana Wallet Adapter component. `useWallet` should also be
+called under the Wallet Adapter scope:
 
 ```
 import { ConnectionProvider, WalletProvider, useWallet } from "@solanawallet-adapter-react"
@@ -68,6 +69,52 @@ const Widget = () => {
       walletAdapter={walletAdapter}
       cb={cb}
       config={config}
+    />
+  )
+}
+
+const Main = () => {
+  ...
+
+  return (
+    <ConnectionProvider endpoint={endpoint}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
+          <WalletMultiButton />
+
+          <Widget />
+
+        </WalletModalProvider>
+      </WalletProvider>
+    </ConnectionProvider>
+  )
+}
+
+export default Main
+
+```
+
+### Example Add Content
+
+This component needs to be used within the scope of the Solana Wallet Adapter component. `useWallet` should also be
+called under the Wallet Adapter scope:
+
+```
+import { ConnectionProvider, WalletProvider, useWallet } from "@solanawallet-adapter-react"
+import SolanaDarkblockWidget from "@darkblock.io/sol-widget"
+
+const Widget = () => {
+  const walletAdapter = useWallet()
+  
+  const apiKey = '** contact darkblock for apikey **'
+
+  return (
+    <SolUpgradeWidget 
+      apiKey={apiKey} 
+      tokenId={HgYuunWM9Hpi2oc3MpK31yvURoZhSog13jTbjQYYjPM} 
+      walletAdapter={wallAdapter} 
+      cb={(p) => console.log(p)} 
+      config={config} 
     />
   )
 }

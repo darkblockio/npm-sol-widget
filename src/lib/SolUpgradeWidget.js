@@ -120,7 +120,13 @@ const SolUpgradeWidget = ({
       state={state}
       config={config}
       authenticate={() => send({ type: 'SIGN' })}
-      reset={() => send({ type: 'RESET' })}
+      reset={(value) => {
+        if (value === 'finished') {
+          send({ type: 'COMPLETE' })
+        } else {
+          send({ type: 'RESET' })
+        }
+      }}
     />
   )
 }
