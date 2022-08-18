@@ -46,21 +46,29 @@ const SolUpgradeWidget = ({
         send({ type: 'FETCH_CREATOR' })
       }
 
-      if (state.value === 'started') {
-        const connectWallet = async () => {
-          const checkAddress = walletAdapter.publicKey.toBase58()
-
-          if (checkAddress) {
-            setAddress(checkAddress)
-            state.context.wallet_address = checkAddress
-            send({ type: 'CONNECT_WALLET' })
-          } else {
-            send({ type: 'CONNECT_FAILED' })
-          }
+      if (state.value === 'started' && walletAdapter && walletAdapter.connected) {
+        if (walletAdapter.publicKey && walletAdapter.signMessage) {
+          setAddress(walletAdapter.publicKey.toBase58())
+          state.context.wallet_address = walletAdapter.publicKey.toBase58()
         }
-
-        connectWallet()
+        send({ type: 'CONNECT_WALLET' })
       }
+
+      // if (state.value === 'started') {
+      //   const connectWallet = async () => {
+      //     const checkAddress = walletAdapter.publicKey.toBase58()
+      //
+      //     if (checkAddress) {
+      //       setAddress(checkAddress)
+      //       state.context.wallet_address = checkAddress
+      //       send({ type: 'CONNECT_WALLET' })
+      //     } else {
+      //       send({ type: 'CONNECT_FAILED' })
+      //     }
+      //   }
+      //
+      //   connectWallet()
+      // }
 
       if (state.value === 'wallet_connected') {
         send({ type: 'VERIFY_OWNER' })
