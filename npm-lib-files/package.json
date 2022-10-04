@@ -1,6 +1,6 @@
 {
   "name": "@darkblock.io/sol-widget",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Darkblock.io React Component Library",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
