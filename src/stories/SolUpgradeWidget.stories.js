@@ -19,7 +19,7 @@ stories.add('Add Content', () => {
     const [walletAdapter, setWalletAdapter] = useState(null)
     const [loaded, setLoaded] = useState(true)
 
-    const apiKey = 'dgtqh26mv8mtgemq4tys47d4a2ax' //internal DB key - not for public use
+    const apiKey = '' //Darkblock API key goes here
 
     return (
       <div style={{ maxWidth: '700px' }}>

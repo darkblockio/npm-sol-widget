@@ -15,7 +15,7 @@
     "NFT"
   ],
   "dependencies": {
-    "@darkblock.io/shared-components": "0.2.21",
+    "@darkblock.io/shared-components": "0.2.22",
     "@solana/web3.js": "^1.53.0",
     "@xstate/react": "^2.0.0",
     "base64-arraybuffer": "^1.0.2",
