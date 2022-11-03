@@ -21,8 +21,9 @@ const SolanaDarkblockWidget = ({
       controlsFadeDelay: true,
     },
   },
+  dev = false,
 }) => {
-  const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform))
+  const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform, dev))
   const [mediaURL, setMediaURL] = useState('')
   const [stackMediaURLs, setStackMediaURLs] = useState('')
   const [address, setAddress] = useState(null)
@@ -137,7 +138,7 @@ const SolanaDarkblockWidget = ({
         console.log(e)
       } finally {
         if (signature) {
-          ownerDataWithOwner = await utils.getOwner(contractAddress, tokenId, platform, address)
+          ownerDataWithOwner = await utils.getOwner(contractAddress, tokenId, platform, address, dev)
 
           if (
             !ownerDataWithOwner ||

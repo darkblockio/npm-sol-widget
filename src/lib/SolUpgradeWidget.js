@@ -17,8 +17,9 @@ const SolUpgradeWidget = ({
       controlsFadeDelay: true,
     },
   },
+  dev = false,
 }) => {
-  const [state, send] = useMachine(() => upgradeMachine(tokenId, '', platform))
+  const [state, send] = useMachine(() => upgradeMachine(tokenId, '', platform, dev))
   const [address, setAddress] = useState(null)
 
   const callback = (state) => {
@@ -88,7 +89,7 @@ const SolUpgradeWidget = ({
     let creatorDataWithOwner
 
     try {
-      creatorDataWithOwner = await utils.getCreator('', tokenId, platform)
+      creatorDataWithOwner = await utils.getCreator('', tokenId, platform, dev)
 
       let isMatch = false
       creatorDataWithOwner.all_creators.forEach((addr) => {

@@ -25,6 +25,7 @@ stories.add('View/Player', () => {
           controlsFadeDelay: true,
         },
       }}
+      dev={false}
     />
   )
 })
