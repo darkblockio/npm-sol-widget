@@ -110,7 +110,10 @@ const SolUpgradeWidget = ({
 
   const signFileUploadData = async () => {
     let signatureData = `${state.context.platform}${state.context.nftData.nft.token}${state.context.fileHash}`
-    const encodedMessage = new TextEncoder().encode(signatureData)
+
+    const msgParams = `You are interacting with the Darkblock Protocol.\n\nPlease sign to upgrade this NFT.\n\nThis request will not trigger a blockchain transaction or cost any fee.\n\nAuthentication Token: ${signatureData}`
+
+    const encodedMessage = new TextEncoder().encode(msgParams)
     const signedMessage = await window.solana.signMessage(encodedMessage, 'utf8')
     const signature = btoa(String.fromCharCode.apply(null, signedMessage.signature))
 

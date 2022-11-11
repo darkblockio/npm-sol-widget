@@ -129,7 +129,10 @@ const SolanaDarkblockWidget = ({
 
     if (walletAdapter.publicKey && walletAdapter.signMessage) {
       address = walletAdapter.publicKey.toBase58()
-      const message = new TextEncoder().encode(epoch + address)
+      const msgParams = `You are unlocking content via the Darkblock Protocol.\n\nPlease sign to authenticate.\n\nThis request will not trigger a blockchain transaction or cost any fee.\n\nAuthentication Token: ${
+        epoch + address
+      }`
+      const message = new TextEncoder().encode(msgParams)
       signature = null
 
       try {
