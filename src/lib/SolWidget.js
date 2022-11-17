@@ -85,32 +85,31 @@ const SolanaDarkblockWidget = ({
       }
 
       if (state.value === 'decrypting') {
+        let tokenId = state.context.tokenId
+        let contractAddress = state.context.contractAddress
+
+        if (
+          state &&
+          state.context &&
+          state.context.arweaveData &&
+          state.context.arweaveData.access &&
+          state.context.arweaveData.access[0]
+        ) {
+          state.context.arweaveData.access[0].tags.forEach((tag) => {
+            if (tag.name.toLowerCase() === 'nft-id') {
+              tokenId = tag.value
+            }
+          })
+        }
+
         setMediaURL(
-          utils.getProxyAsset(
-            state.context.artId,
-            epochSignature,
-            state.context.tokenId,
-            state.context.contractAddress,
-            null,
-            platform,
-            address
-          )
+          utils.getProxyAsset(state.context.artId, epochSignature, tokenId, contractAddress, null, platform, address)
         )
 
         let arrTemp = []
 
         state.context.display.stack.map((db) => {
-          arrTemp.push(
-            utils.getProxyAsset(
-              db.artId,
-              epochSignature,
-              state.context.tokenId,
-              state.context.contractAddress,
-              null,
-              platform,
-              address
-            )
-          )
+          arrTemp.push(utils.getProxyAsset(db.artId, epochSignature, tokenId, contractAddress, null, platform, address))
         })
 
         setStackMediaURLs(arrTemp)
