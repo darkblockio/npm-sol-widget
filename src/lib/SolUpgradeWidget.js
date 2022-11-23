@@ -139,6 +139,7 @@ const SolUpgradeWidget = ({
           send({ type: 'RESET' })
         }
       }}
+      dev={dev}
     />
   )
 }
