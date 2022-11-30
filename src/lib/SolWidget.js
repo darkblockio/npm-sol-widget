@@ -3,7 +3,7 @@ import { Stack, utils, widgetMachine } from '@darkblock.io/shared-components'
 import { useMachine } from '@xstate/react'
 import { encode } from 'base64-arraybuffer'
 
-const platform = 'Solana'
+
 const contractAddress = ''
 
 let signature, epochSignature
@@ -21,8 +21,11 @@ const SolanaDarkblockWidget = ({
       controlsFadeDelay: true,
     },
   },
+  network = 'mainnet',
   dev = false,
 }) => {
+  const upperNetwork = network.charAt(0).toUpperCase() + network.slice(1)
+  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${upperNetwork}` 
   const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform, dev))
   const [mediaURL, setMediaURL] = useState('')
   const [stackMediaURLs, setStackMediaURLs] = useState('')
