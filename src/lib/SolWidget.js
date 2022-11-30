@@ -24,7 +24,8 @@ const SolanaDarkblockWidget = ({
   network = 'mainnet',
   dev = false,
 }) => {
-  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${network}` 
+  const upperNetwork = network.charAt(0).toUpperCase() + network.slice(1)
+  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${upperNetwork}` 
   const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform, dev))
   const [mediaURL, setMediaURL] = useState('')
   const [stackMediaURLs, setStackMediaURLs] = useState('')

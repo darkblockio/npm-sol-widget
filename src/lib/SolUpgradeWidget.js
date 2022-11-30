@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useMachine } from '@xstate/react'
 import { utils, Upgrader, upgradeMachine } from '@darkblock.io/shared-components'
 
+
 const SolUpgradeWidget = ({
   apiKey,
   tokenId,
@@ -19,7 +20,8 @@ const SolUpgradeWidget = ({
   network = 'mainnet',
   dev = false,
 }) => {
-  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${network}` 
+  const upperNetwork = network.charAt(0).toUpperCase() + network.slice(1)
+  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${upperNetwork}` 
   const [state, send] = useMachine(() => upgradeMachine(tokenId, '', platform, dev))
   const [address, setAddress] = useState(null)
 
