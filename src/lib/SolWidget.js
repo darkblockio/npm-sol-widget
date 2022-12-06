@@ -3,7 +3,6 @@ import { Stack, utils, widgetMachine } from '@darkblock.io/shared-components'
 import { useMachine } from '@xstate/react'
 import { encode } from 'base64-arraybuffer'
 
-
 const contractAddress = ''
 
 let signature, epochSignature
@@ -25,7 +24,7 @@ const SolanaDarkblockWidget = ({
   dev = false,
 }) => {
   const upperNetwork = network.charAt(0).toUpperCase() + network.slice(1)
-  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${upperNetwork}` 
+  const platform = network.toLowerCase() === 'mainnet' ? 'Solana' : `Solana-${upperNetwork}`
   const [state, send] = useMachine(() => widgetMachine(tokenId, contractAddress, platform, dev))
   const [mediaURL, setMediaURL] = useState('')
   const [stackMediaURLs, setStackMediaURLs] = useState('')
@@ -90,20 +89,6 @@ const SolanaDarkblockWidget = ({
       if (state.value === 'decrypting') {
         let tokenId = state.context.tokenId
         let contractAddress = state.context.contractAddress
-
-        if (
-          state &&
-          state.context &&
-          state.context.arweaveData &&
-          state.context.arweaveData.access &&
-          state.context.arweaveData.access[0]
-        ) {
-          state.context.arweaveData.access[0].tags.forEach((tag) => {
-            if (tag.name.toLowerCase() === 'nft-id') {
-              tokenId = tag.value
-            }
-          })
-        }
 
         setMediaURL(
           utils.getProxyAsset(state.context.artId, epochSignature, tokenId, contractAddress, null, platform, address)
