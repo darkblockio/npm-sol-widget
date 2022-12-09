@@ -1245,18 +1245,16 @@
   dependencies:
     postcss-value-parser "^4.2.0"
 
-"@darkblock.io/shared-components@0.2.37":
-  version "0.2.37"
-  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.2.37.tgz#6d5127374edd71daa5c32e959b38251262ae0230"
-  integrity sha512-jKFxhnJCqDFZG84rGirpYMyPlu0mjJbk97wSh3xDMJpCAEz2mfgne/01neMMkNQQ8I1VkBPtU+xLhq1HhU/w1Q==
+"@darkblock.io/shared-components@0.2.38":
+  version "0.2.38"
+  resolved "https://registry.yarnpkg.com/@darkblock.io/shared-components/-/shared-components-0.2.38.tgz#493e822ad9b139ec9619d598e4f3339333a7c3b1"
+  integrity sha512-nH43PlV0PSS0eE75h2WhxZ+6KxkLypZTJam4wVjBLzpaNS3AWYTpz1lUxomcAiDyfkOeYkZzRcckPSx26MNogA==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^6.2.0"
     "@fortawesome/free-solid-svg-icons" "^6.2.0"
     "@fortawesome/react-fontawesome" "^0.2.0"
     photoswipe "^4.1.3"
     plyr-react "^5.1.2"
-    react "^17.0.2"
-    react-dom "^17.0.2"
     react-lottie "^1.2.3"
     react-scripts "5.0.0"
     xstate "^4.31.0"
