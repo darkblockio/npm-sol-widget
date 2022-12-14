@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useMachine } from '@xstate/react'
 import { utils, Upgrader, upgradeMachine } from '@darkblock.io/shared-components'
 
-
 const SolUpgradeWidget = ({
   apiKey,
   tokenId,
@@ -21,7 +20,7 @@ const SolUpgradeWidget = ({
   dev = false,
 }) => {
   const upperNetwork = network.charAt(0).toUpperCase() + network.slice(1)
-  const platform = network.toLowerCase() === 'mainnet' ? "Solana" : `Solana-${upperNetwork}` 
+  const platform = network.toLowerCase() === 'mainnet' ? 'Solana' : `Solana-${upperNetwork}`
   const [state, send] = useMachine(() => upgradeMachine(tokenId, '', platform, dev))
   const [address, setAddress] = useState(null)
 
@@ -94,14 +93,11 @@ const SolUpgradeWidget = ({
     try {
       creatorDataWithOwner = await utils.getCreator('', tokenId, platform, dev)
 
-      let isMatch = false
-      creatorDataWithOwner.all_creators.forEach((addr) => {
-        if (isMatch || addr.toLowerCase() === address.toLowerCase()) {
-          isMatch = true
-        }
-      })
+      const verifyOwnership = creatorDataWithOwner.all_creators.find(
+        (creator) => creator.toLowerCase() === address.toLowerCase()
+      )
 
-      if (isMatch) {
+      if (verifyOwnership) {
         send({ type: 'SUCCESS' })
       } else {
         send({ type: 'FAIL' })
