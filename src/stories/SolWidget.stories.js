@@ -11,6 +11,12 @@ stories.add('View/Player', () => {
 
   const walletAdapter = { connected: false }
 
+  const dbConfigOptions = {
+    include: [],
+    exclude: [],
+    sort: [],
+  }
+
   return (
     <SolanaDarkblockWidget
       tokenId="HgYuunWM9Hpi2oc3MpK31yvURoZhSog13jTbjQYYjPM"
@@ -26,6 +32,7 @@ stories.add('View/Player', () => {
         },
       }}
       dev={false}
+      dbConfig={dbConfigOptions}
     />
   )
 })
