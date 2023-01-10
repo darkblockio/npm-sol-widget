@@ -138,7 +138,7 @@ const SolanaDarkblockWidget = ({
           ) {
             send({ type: 'FAIL' })
           } else {
-            signature = encodeURIComponent(encode(signature)) + '_Solana'
+            signature = encodeURIComponent(encode(signature)) + `_${platform}`
             epochSignature = epoch + '_' + signature
             send({ type: 'SUCCESS' })
           }
