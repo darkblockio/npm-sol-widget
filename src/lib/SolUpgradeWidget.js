@@ -113,8 +113,15 @@ const SolUpgradeWidget = ({
     const msgParams = `You are interacting with the Darkblock Protocol.\n\nPlease sign to upgrade this NFT.\n\nThis request will not trigger a blockchain transaction or cost any fee.\n\nAuthentication Token: ${signatureData}`
 
     const encodedMessage = new TextEncoder().encode(msgParams)
-    const signedMessage = await window.solana.signMessage(encodedMessage, 'utf8')
-    const signature = btoa(String.fromCharCode.apply(null, signedMessage.signature))
+    const signedMessage = await walletAdapter.signMessage(encodedMessage, 'utf8')
+    console.log('signedMessage: ', signedMessage)
+    
+    // Creating a Buffer from the signedMessage
+    const signatureBuffer = Buffer.from(signedMessage)
+    
+    // Encoding Buffer data to Base64
+    const signature = signatureBuffer.toString('base64')
+    console.log('signature: ', signature)
 
     if (signature) {
       state.context.signature = signature
@@ -123,7 +130,9 @@ const SolUpgradeWidget = ({
       state.context.signature = null
       send({ type: 'SIGNING_FAIL' })
     }
-  }
+}
+
+
 
   return (
     <Upgrader
